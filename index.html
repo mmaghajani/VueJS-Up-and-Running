@@ -9,6 +9,7 @@
             <input type="text" v-on:input="changeTitle">
             <p>
                 {{title}}
+                <a v-bind:href="link">Google</a>
             </p>
         </div>
         <script>
@@ -16,6 +17,7 @@
             el: '#app',
             data: {
                 title: 'Hello World',
+                link: 'http://google.com'
             },
             methods: {
                 changeTitle: function(e){
