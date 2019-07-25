@@ -6,22 +6,34 @@
     </head>
     <body>
         <div id="app">
-            <input type="text" v-on:input="changeTitle">
+            <button v-on:click="increase(2, $event)">Click Me</button>
+            <p>{{counter}}</p>
+            <p v-on:mousemove="updateCoordinates">
+                Coordinates : {{x}} , {{y}}
+                - <span v-on:mousemove.stop="">Dead Spot</span>
+            </p>
             <p>
-                {{title}}
-                <a v-bind:href="link">Google</a>
+                <input type="text" v-on:keyup.enter.space="alertMe">
             </p>
         </div>
         <script>
         new Vue({
             el: '#app',
             data: {
-                title: 'Hello World',
-                link: 'http://google.com'
+                counter : 0,
+                x: 0,
+                y: 0
             },
             methods: {
-                changeTitle: function(e){
-                    this.title = e.target.value;
+                increase: function(step, e){
+                    this.counter += step;
+                },
+                updateCoordinates: function(e){
+                    this.x = e.clientX;
+                    this.y = e.clientY;
+                },
+                alertMe: function(){
+                    alert('Alert!');
                 }
             }
         });
